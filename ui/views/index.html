@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Gajendra Doniparthi">
+    <title>ARC Metadata Registry Search</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="/css/headers.css">
+    <link rel="stylesheet" href="/scss/nfdi-colors.scss">
+    <script src="/js/apiCalls.js"></script>
+    <script src="/js/index.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+            <div class="container-fluid" style="width:60%">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="text-white">About</h4>
+                        <p class="text-muted">Write something describing COMPETE. Add some information about the
+                            application below, the author, or any other background context.</p>
+                    </div>
+                    <div class="col-sm-4 offset-md-1 py-4">
+                        <h4 class="text-white">Contact</h4>
+                        <p class="text-muted">University of Kaiserslautern,</p>
+                        <p class="text-muted">Dept. of Computer Science,</p>
+                        <p class="text-muted">P.O.Box 3049,</p>
+                        <p class="text-muted">67653 Kaiserslautern.</p>
+                        <p class="text-muted">Germany.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="col-1 align-items-center">
+                <img class="mx-auto d-block" src="/images/DataPLANT/DataPLANT_logo_square_bg_transparent.svg"
+                    height="60px">
+            </div>
+            <div class="col-11">
+                <a href="#" class="navbar-brand d-flex align-items-center"
+                    style="font-family: Arial, Helvetica;font-size:40px; letter-spacing: 10px">
+                    <i>Data Plant</i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-center mt-5">
+                <form>
+                    <!--form method="POST" action="/getARCs"-->
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                            <img src="/images/DataPLANT/DataPLANT_logo_minimal_rounded_bg_lightblue.svg"
+                                class="card-img-top" alt="isa">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center;">ARC Search</h5>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center pb-3">
+                            <button id="searchBtn" type="button" class="is-bg-darkblue">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<footer class="footer">
+    <div class="search_form">
+        <div class="container">
+            <form class="form-inline">
+                <p style="margin-left:auto; margin-right:auto">|</p>
+                <a href="https://nfdi4plants.github.io/" target="_blank" style="margin-left:auto; margin-right:auto">
+                    <p>DataPLANT - An NFDI consortium of plant research</p>
+                </a>
+                <p style="margin-left:auto; margin-right:auto">|</p>
+                <a href="https://www.uni-kl.de/" target="_blank" style="margin-left:auto; margin-right:auto">
+                    <p>TU Kaiserslautern, Germany</p>
+                </a>
+                <p style="margin-left:auto; margin-right:auto">|</p>
+                <a href="https://gitlab.nfdi4plants.de/explore" style="margin-left:auto; margin-right:auto"
+                    target="_blank">
+                    <p>DataPLANT HUB</p>
+                </a>
+                <p style="margin-left:auto; margin-right:auto">|</p>
+            </form>
+        </div>
+    </div>
+</footer>
+
+</html>

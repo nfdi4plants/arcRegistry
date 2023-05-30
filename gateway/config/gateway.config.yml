@@ -1,0 +1,400 @@
+https:
+    port: 4567
+    tls:
+        "default":
+            key: /run/secrets/cert.key
+            cert: /run/secrets/cert.crt
+            
+admin:
+    port: 9876
+    host: localhost
+    
+apiEndpoints:
+    query:
+        host: '*'
+        paths: '/api/v0/registry/query'
+        methods: 'POST'
+        scopes:
+          - 'read'
+    logs:
+        host: '*'
+        paths: '/api/v0/registry/logs'
+        methods: 'GET'
+        scopes:
+          - 'admin'
+    createUser:
+        host: '*'
+        paths: '/api/v0/auth/users'
+        methods: 'POST'
+        scopes:
+          - 'admin'
+    deleteUser:
+        host: '*'
+        paths: '/api/v0/auth/users/:user'
+        methods: 'DELETE'
+        scopes:
+          - 'admin'
+    activateDeactivateUser:
+        host: '*'
+        paths: '/api/v0/auth/users/:user/status'
+        methods: 'PUT'
+        scopes:
+          - 'admin'
+    getAllUsers:
+        host: '*'
+        paths: '/api/v0/auth/users'
+        methods: 'GET'
+        scopes:
+          - 'admin'
+    getSpecificUser:
+        host: '*'
+        paths: '/api/v0/auth/users/:user'
+        methods: 'GET'
+        scopes:
+          - 'admin'
+    createCredentials:
+        host: '*'
+        paths: '/api/v0/auth/users/:user/credentials'
+        methods: 'POST'
+        scopes:
+          - 'admin'
+    getCredentials:
+        host: '*'
+        paths: '/api/v0/auth/users/:user/credentials'
+        methods: 'GET'
+        scopes:
+          - 'admin'
+    activateDeactivateCredentials:
+        host: '*'
+        paths: '/api/v0/auth/users/:user/credentials/:keyid/status'
+        methods: 'PUT'
+        scopes:
+          - 'admin'
+    addRemoveScopesCredential:
+        host: '*'
+        paths: '/api/v0/auth/users/:user/credentials/:keyid/scopes/:scope'
+        methods: ['PUT','DELETE']
+        scopes:
+          - 'admin'
+    createLatestARC:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:arcID'
+        methods: 'POST'
+        scopes:
+          - 'write'
+    createSpecificARC:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:arcID/:arcVersion'
+        methods: 'POST'
+        scopes:
+          - 'write'
+    deleteSpecificARC:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:arcID/:arcVersion'
+        methods: 'DELETE'
+        scopes:
+          - 'admin'
+    deleteSpecificARCFromHost:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:gitLabHost/:arcID/:arcVersion'
+        methods: 'DELETE'
+        scopes:
+            - 'admin'
+    getLatestARC:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:arcID'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    getAllParameterValues:
+        host: '*'
+        paths: '/api/v0/registry/params/:gitLabHost/:arcID/:arcVersion'
+        methods: 'GET'
+        scopes:
+            - 'read'
+    getAllParameterValuesByType:
+        host: '*'
+        paths: '/api/v0/registry/params/:gitLabHost/:arcID/:arcVersion/:type'
+        methods: 'GET'
+        scopes:
+            - 'read'
+    getLatestARCFromHost:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:gitLabHost/:arcID'
+        methods: 'GET'
+        scopes:
+            - 'read'
+    getSpecificARC:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:arcID/:arcVersion'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    getSpecificARCFromHost:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:gitLabHost/:arcID/:arcVersion'
+        methods: 'GET'
+        scopes:
+            - 'read'
+    getDifferences:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:arcID/:arcVersion1/:arcVersion2'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    findStudies:
+        host: '*'
+        paths: '/api/v0/registry/studies'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    findInvestigations:
+        host: '*'
+        paths: '/api/v0/registry/investigations'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    findPersons:
+        host: '*'
+        paths: '/api/v0/registry/persons'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    findPublications:
+        host: '*'
+        paths: '/api/v0/registry/publications'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    findARCs:
+        host: '*'
+        paths: '/api/v0/registry/arcs'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    findAssays:
+        host: '*'
+        paths: '/api/v0/registry/assays'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    findParams:
+        host: '*'
+        paths: '/api/v0/registry/params'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    createInvestigation:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:gitLabHost/:arcID/:arcVersion/investigation'
+        methods: 'POST'
+        scopes:
+          - 'write'
+    createParameterValues:
+        host: '*'
+        paths: '/api/v0/registry/params'
+        methods: 'POST'
+        scopes:
+            - 'write'
+    getInvestigationFromHost:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:gitLabHost/:arcID/:arcVersion/investigation'
+        methods: 'GET'
+        scopes:
+          - 'read'
+    deleteInvestigationFromHost:
+        host: '*'
+        paths: '/api/v0/registry/arcs/:gitLabHost/:arcID/:arcVersion/investigation'
+        methods: 'DELETE'
+        scopes:
+          - 'admin'
+    webhook:
+        host: '*'
+        paths: '/api/v0/webhook'
+        methods: 'POST'
+        scopes:
+          - 'webhook'
+        
+serviceEndpoints:
+    adminBackend:
+        url: 'http://localhost:9876'
+    db_es:
+        url: 'http://arc_db_es:5000'
+    intg_gitlab:
+        url: 'http://arc_intg_gitlab:3000'
+    logger:
+        url: 'http://arc_logger:6000'
+        
+policies:
+    - proxy
+    - rewrite
+    - key-auth
+        
+pipelines:
+    pipeline_1:
+        apiEndpoints:
+            - 'createLatestARC'
+            - 'createSpecificARC'
+            - 'getLatestARC'
+            - 'getLatestARCFromHost'
+            - 'getSpecificARC'
+            - 'getSpecificARCFromHost'
+            - 'deleteSpecificARC'
+            - 'deleteSpecificARCFromHost'
+            - 'createInvestigation'
+            - 'createParameterValues'
+            - 'getInvestigationFromHost'
+            - 'getAllParameterValues'
+            - 'getAllParameterValuesByType'
+            - 'deleteInvestigationFromHost'
+            - 'getDifferences'
+            - 'findStudies'
+            - 'findInvestigations'
+            - 'findPersons'
+            - 'findPublications'
+            - 'findARCs'
+            - 'findAssays'
+            - 'findParams'
+            - 'query'
+
+        policies:
+            - key-auth:
+                - action:
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: regexpmatch
+                        match: ^/api/v0/?(.*)$
+                    action:
+                        rewrite: /$1   
+            - proxy:
+                - 
+                    action:
+                        serviceEndpoint: db_es
+    pipeline_2:
+        apiEndpoints:
+            - 'webhook'
+        
+        policies:
+            - key-auth:
+                - action:
+                    apiKeyHeader: X-Gitlab-Token
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: regexpmatch
+                        match: ^/api/v0/?(.*)$
+                    action:
+                        rewrite: /$1   
+            - proxy:
+                - 
+                    action:
+                        serviceEndpoint: intg_gitlab
+    pipeline_3:
+        apiEndpoints:
+            - 'createUser'
+            - 'deleteUser'
+            - 'getAllUsers'
+            - 'getSpecificUser'
+            - 'activateDeactivateUser'
+        policies:
+            - key-auth:
+                - action:
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: regexpmatch
+                        match: ^/api/v0/auth/?(.*)$
+                    action:
+                        rewrite: /$1  
+            - proxy:
+                - action:
+                    serviceEndpoint: adminBackend
+    pipeline_4:
+        apiEndpoints:
+            - 'createCredentials'
+        policies:
+            - key-auth:
+                - action:
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: pathmatch
+                        match: /api/v0/auth/users/:user/credentials
+                    action:
+                        rewrite: /credentials
+            - proxy:
+                - action:
+                    serviceEndpoint: adminBackend
+    pipeline_5:
+        apiEndpoints:
+            - 'getCredentials'
+        policies:
+            - key-auth:
+                - action:
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: pathmatch
+                        match: /api/v0/auth/users/:user/credentials
+                    action:
+                        rewrite: /credentials/:user
+            - proxy:
+                - action:
+                    serviceEndpoint: adminBackend
+    pipeline_6:
+        apiEndpoints:
+            - 'activateDeactivateCredentials'
+        policies:
+            - key-auth:
+                - action:
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: pathmatch
+                        match: /api/v0/auth/users/:user/credentials/:keyid/status
+                    action:
+                        rewrite: /credentials/key-auth/:keyid/status
+            - proxy:
+                - action:
+                    serviceEndpoint: adminBackend
+    pipeline_7:
+        apiEndpoints:
+            - 'addRemoveScopesCredential'
+        policies:
+            - key-auth:
+                - action:
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: pathmatch
+                        match: /api/v0/auth/users/:user/credentials/:keyid/scopes/:scope
+                    action:
+                        rewrite: /credentials/key-auth/:keyid/scopes/:scope
+            - proxy:
+                - action:
+                    serviceEndpoint: adminBackend
+    pipeline_8:
+        apiEndpoints:
+            - 'logs'
+        policies:
+            - key-auth:
+                - action:
+                    disableHeadersScheme: true
+            - rewrite: 
+                - 
+                    condition:
+                        name: regexpmatch
+                        match: ^/api/v0/?(.*)$
+                    action:
+                        rewrite: /$1
+            - proxy:
+                - action:
+                    serviceEndpoint: logger

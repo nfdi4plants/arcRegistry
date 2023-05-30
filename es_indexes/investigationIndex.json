@@ -1,0 +1,341 @@
+{
+	"settings": {
+		"index.mapping.total_fields.limit": 10000,
+		"number_of_shards": 1,
+		"number_of_replicas": 1
+	},
+	"mappings": {
+		"properties": {
+			"arcID": {
+				"type": "keyword"
+			},
+			"arcVersion": {
+				"type": "integer"
+			},
+			"filename": {
+				"type": "keyword"
+			},
+			"identifier": {
+				"type": "keyword"
+			},
+			"title": {
+				"type": "text"
+			},
+			"description": {
+				"type": "text"
+			},
+			"submissionDate": {
+				"type": "date"
+			},
+			"publicReleasedate": {
+				"type": "date"
+			},
+			"ontologySourceReferences": {
+				"type": "nested",
+				"properties": {
+					"comments": {
+						"type": "nested",
+						"properties": {
+							"name": {
+								"type": "text"
+							},
+							"value": {
+								"type": "text"
+							}
+						}
+					},
+					"description": {
+						"type": "text"
+					},
+					"file": {
+						"type": "keyword"
+					},
+					"name": {
+						"type": "text"
+					},
+					"version": {
+						"type": "keyword"
+					}
+				}
+			},
+			"publications": {
+				"type": "nested",
+				"properties": {
+					"comments": {
+						"type": "nested",
+						"properties": {
+							"name": {
+								"type": "text"
+							},
+							"value": {
+								"type": "text"
+							}
+						}
+					},
+					"pubMedID": {
+						"type": "keyword"
+					},
+					"doi": {
+						"type": "keyword"
+					},
+					"authorList": {
+						"type": "text"
+					},
+					"title": {
+						"type": "text"
+					},
+					"status": {
+						"type": "object"
+					}
+				}
+			},
+			"people": {
+				"type": "nested",
+				"properties": {
+					"lastName": {
+						"type": "text"
+					},
+					"firstName": {
+						"type": "text"
+					},
+					"midInitials": {
+						"type": "text"
+					},
+					"email": {
+						"type": "text"
+					},
+					"phone": {
+						"type": "keyword"
+					},
+					"fax": {
+						"type": "keyword"
+					},
+					"address": {
+						"type": "text"
+					},
+					"affiliation": {
+						"type": "text"
+					},
+					"roles": {
+						"type": "nested"
+					},
+					"comments": {
+						"type": "nested",
+						"properties": {
+							"name": {
+								"type": "text"
+							},
+							"value": {
+								"type": "text"
+							}
+						}
+					}
+				}
+			},
+			"studies": {
+				"type": "nested",
+				"properties": {
+					"filename": {
+						"type": "text"
+					},
+					"identifier": {
+						"type": "keyword"
+					},
+					"title": {
+						"type": "text"
+					},
+					"description": {
+						"type": "text"
+					},
+					"submissionDate": {
+						"type": "date"
+					},
+					"publicReleaseDate": {
+						"type": "date"
+					},
+					"publications": {
+						"type": "nested",
+						"properties": {
+							"comments": {
+								"type": "nested",
+								"properties": {
+									"name": {
+										"type": "text"
+									},
+									"value": {
+										"type": "text"
+									}
+								}
+							},
+							"pubMedID": {
+								"type": "keyword"
+							},
+							"doi": {
+								"type": "keyword"
+							},
+							"authorList": {
+								"type": "text"
+							},
+							"title": {
+								"type": "text"
+							},
+							"status": {
+								"type": "object"
+							}
+						}
+					},
+					"people": {
+						"type": "nested",
+						"properties": {
+							"lastName": {
+								"type": "text"
+							},
+							"firstName": {
+								"type": "text"
+							},
+							"midInitials": {
+								"type": "text"
+							},
+							"email": {
+								"type": "text"
+							},
+							"phone": {
+								"type": "keyword"
+							},
+							"fax": {
+								"type": "keyword"
+							},
+							"address": {
+								"type": "text"
+							},
+							"affiliation": {
+								"type": "text"
+							},
+							"roles": {
+								"type": "nested"
+							},
+							"comments": {
+								"type": "nested",
+								"properties": {
+									"name": {
+										"type": "text"
+									},
+									"value": {
+										"type": "text"
+									}
+								}
+							}
+						}
+					},
+					"studyDesignDescriptors": {
+						"type": "nested"
+					},
+					"protocols": {
+						"type": "nested"
+					},
+					"materials": {
+						"type": "object",
+						"properties": {
+							"sources": {
+								"type": "nested"
+							},
+							"samples": {
+								"type": "nested"
+							},
+							"otherMaterials": {
+								"type": "nested"
+							}
+						}
+					},
+					"processSequence": {
+						"type": "nested"
+					},
+					"assays": {
+						"type": "nested",
+						"properties": {
+							"comments": {
+								"type": "nested",
+								"properties": {
+									"name": {
+										"type": "text"
+									},
+									"value": {
+										"type": "text"
+									}
+								}
+							},
+							"filename": {
+								"type": "keyword"
+							},
+							"measurementType": {
+								"type": "object"
+							},
+							"technologyType": {
+								"type": "object",
+								"properties": {
+									"ontologyAnnotation": {
+										"type": "object"
+									}
+								}
+							},
+							"technologyPlatform": {
+								"type": "text"
+							},
+							"dataFiles": {
+								"type": "nested"
+							},
+							"materials": {
+								"type": "object",
+								"properties": {
+									"samples": {
+										"type": "nested"
+									},
+									"otherMaterials": {
+										"type": "nested"
+									}
+								}
+							},
+							"characteristicCategories": {
+								"type": "nested"
+							},
+							"unitCategories": {
+								"type": "nested"
+							},
+							"processSequence": {
+								"type": "nested"
+							}
+						}
+					},
+					"factors": {
+						"type": "nested"
+					},
+					"unitCategories": {
+						"type": "nested"
+					},
+					"comments": {
+						"type": "nested",
+						"properties": {
+							"name": {
+								"type": "text"
+							},
+							"value": {
+								"type": "text"
+							}
+						}
+					}
+				}
+			},
+			"comments": {
+				"type": "nested",
+				"properties": {
+					"name": {
+						"type": "text"
+					},
+					"value": {
+						"type": "text"
+					}
+				}
+			}
+		}
+	}
+}

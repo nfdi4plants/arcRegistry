@@ -1,0 +1,151 @@
+{
+    "settings": {
+		"index.mapping.total_fields.limit": 100000,
+        "number_of_shards": 1,
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "properties": {
+            "arcID": {
+                "type": "keyword"
+            },
+            "arcVersion": {
+                "type": "integer"
+            },
+            "arcCreationDate": {
+                "type": "date"
+            },
+            "arcLastModifiedDate": {
+                "type": "date"
+            },
+            "investigationFilename": {
+                "type": "keyword"
+            },
+            "arcSize": {
+                "type": "long"
+            },
+            "gitLabUserID": {
+                "type": "long"
+            },
+            "gitLabUserName": {
+                "type": "text"
+            },
+            "gitLabUserUserName": {
+                "type": "keyword"
+            },
+            "gitLabUserEmail": {
+                "type": "keyword"
+            },
+            "gitLabRepoVisibility": {
+                "type": "keyword"
+            },
+            "gitLabHost":{
+                "type": "keyword"
+            },
+            "gitLabHostURL":{
+                "type": "text"
+            },
+            "gitLabHostLocation":{
+                "type": "text"
+            },
+            "gitLabHostVersion":{
+                "type": "text"
+            },
+            "assays": {
+                "properties": {
+                    "file": {
+                        "type": "keyword"
+                    },
+                    "status": {
+                        "type": "keyword"
+                    },
+                    "creationDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedBy": {
+                        "type": "text"
+                    }
+                }
+            },
+            "studies": {
+                "properties": {
+                    "file": {
+                        "type": "keyword"
+                    },
+                    "status": {
+                        "type": "keyword"
+                    },
+                    "creationDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedBy": {
+                        "type": "text"
+                    }
+                }
+            },
+            "workflows": {
+                "properties": {
+                    "file": {
+                        "type": "keyword"
+                    },
+                    "status": {
+                        "type": "keyword"
+                    },
+                    "creationDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedBy": {
+                        "type": "text"
+                    }
+                }
+            },
+            "externals": {
+                "properties": {
+                    "file": {
+                        "type": "keyword"
+                    },
+                    "status": {
+                        "type": "keyword"
+                    },
+                    "creationDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedBy": {
+                        "type": "text"
+                    }
+                }
+            },
+            "runs": {
+                "properties": {
+                    "file": {
+                        "type": "keyword"
+                    },
+                    "status": {
+                        "type": "keyword"
+                    },
+                    "creationDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedDate": {
+                        "type": "date"
+                    },
+                    "lastModifiedBy": {
+                        "type": "text"
+                    }
+                }
+            }
+        }
+    }
+}

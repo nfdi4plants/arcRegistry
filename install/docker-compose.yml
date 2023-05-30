@@ -1,0 +1,100 @@
+version: "3.9"
+services:
+    gateway:
+        image: arcregistry/arc_gateway:latest
+        depends_on:
+          - intg_gitlab
+          - db_es
+          - users
+          - logger
+        volumes:
+          - type: volume
+            source: gateway
+            target: /var/lib/eg
+        secrets:
+          - cert.key
+          - cert.crt
+        ports:
+          - 4567:4567                                                   # No other ports needed
+    intg_gitlab:
+        image: arcregistry/arc_intg_gitlab:latest
+        secrets:
+          - apiKey
+    db_es:
+        image: arcregistry/arc_db_es:latest
+        depends_on:
+          - logger
+        secrets:
+          - elasticPassword
+    users:
+        image: redis:latest
+        command: ["redis-server", "--appendonly", "yes"]                # Enables persistent storage
+        volumes:
+          - type: volume
+            source: users
+            target: /data
+    es:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
+        volumes:
+          - type: volume    
+            source: es
+            target: /usr/share/elasticsearch/data
+        secrets:
+          - source: elasticPassword
+            target: elasticPassword
+            uid: '1000'
+            gid: '1001'
+            mode: 0400                                                  # ElasticSearch needs 400 or 600
+        environment:
+          - discovery.type=single-node
+          - bootstrap.memory_lock=false
+          - xpack.security.enabled=true                                 # Enables authentication
+          - ELASTIC_PASSWORD_FILE=/run/secrets/elasticPassword          # Password for user 'elastic'  
+        deploy:
+          resources:
+            limits:
+              memory: 2048M
+        ports:
+          - 9200:9200
+          - 9300:9300
+    ui:
+      image: arcregistry/arc_ui:latest
+      depends_on:
+        - intg_gitlab
+        - db_es
+        - users
+        - logger
+        - gateway
+      ports:
+        - 8080:8080
+    logger:
+        image: arcregistry/arc_logger:latest
+        depends_on:
+          - es
+        secrets:
+          - elasticPassword
+
+networks:
+    default:                                                            # App-wide default network
+        name: arc_network
+        driver: overlay
+        driver_opts:
+            encrypted: ""                                               # "" means True  
+        
+secrets:
+    cert.key:
+        external: true                                                  # Use pre-existing secret
+    cert.crt:
+        external: true                                                  # Use pre-existing secret
+    apiKey:
+        external: true                                                  # Use pre-existing secret                   
+    elasticPassword:                                                                                                
+        external: true                                                  # Use pre-existing secret
+        
+volumes:
+    gateway:
+        external: true
+    users:
+        external: true
+    es:
+        external: true

@@ -1,0 +1,28 @@
+{
+  "name": "websearch",
+  "version": "1.0.0",
+  "description": "web search module",
+  "main": "index.js",
+  "scripts": {
+    "start": "HTTPS=true SSL_CRT_FILE='./.cert/cert.pem' SSL_KEY_FILE='./.cert/key.pem' nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gajendra Doniparthi",
+  "license": "ISC",
+  "dependencies": {
+    "@nfdi4plants/web-components": "^0.6.0",
+    "body-parser": "^1.19.1",
+    "bootstrap": "^5.1.3",
+    "datatables.net": "^1.11.3",
+    "datatables.net-dt": "^1.11.3",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-session": "^1.17.3",
+    "jquery-ui": "^1.13.0",
+    "jquery-ui-dist": "^1.13.0",
+    "jquery-ui-themes": "^1.12.0",
+    "lit-html": "^2.2.6",
+    "nodemon": "^2.0.15",
+    "dotenv": "^16.0.3"
+  }
+}

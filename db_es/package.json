@@ -1,0 +1,19 @@
+{
+  "name": "db_es",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.13.1",
+    "body-parser": "^1.19.0",
+    "boolean-parser": "0.0.2",
+    "express": "^4.17.1",
+    "hashmap": "^2.4.0"
+  }
+}

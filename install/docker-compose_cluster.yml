@@ -1,0 +1,108 @@
+version: "3.9"
+services:
+    gateway:
+        image: arcregistry/arc_gateway:latest
+        depends_on:
+          - intg_gitlab
+          - db_es
+          - users
+          - logger
+        volumes:
+          - type: volume
+            source: gateway
+            target: /var/lib/eg
+        secrets:
+          - cert.key
+          - cert.crt
+        ports:
+          - 4567:4567                                                   # No other ports needed
+    intg_gitlab:
+        image: arcregistry/arc_intg_gitlab:latest
+        secrets:
+          - apiKey
+    db_es:
+        image: arcregistry/arc_db_es:latest
+        depends_on:
+          - logger
+        secrets:
+          - elasticPassword
+    users:
+        image: redis:latest
+        command: ["redis-server", "--appendonly", "yes"]                # Enables persistent storage
+        volumes:
+          - type: volume
+            source: users
+            target: /data
+    es:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+        volumes:
+          - type: volume    
+            source: es
+            target: /usr/share/elasticsearch/data
+        ports:
+          - 9200:9200
+        environment:
+          - node.name=es
+          - cluster.name=es_cluster
+          - cluster.initial_master_nodes=es
+          - discovery.seed_hosts=es1
+          - ELASTIC_PASSWORD=2TrVTlijYsBR3W6Y5aPNgB
+          - bootstrap.memory_lock=false
+          - xpack.security.enabled=false                                # Enables authentication
+        deploy:
+          resources:
+            limits:
+              memory: 2048M
+    es1:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+        depends_on:
+          - es
+        volumes:
+          - type: volume    
+            source: es1
+            target: /usr/share/elasticsearch/data
+        environment:
+          - node.name=es1
+          - cluster.name=es_cluster
+          - cluster.initial_master_nodes=es
+          - discovery.seed_hosts=es
+          - ELASTIC_PASSWORD=2TrVTlijYsBR3W6Y5aPNgB
+          - bootstrap.memory_lock=false
+          - xpack.security.enabled=false                                 # Enables authentication
+        deploy:
+          resources:
+            limits:
+              memory: 2048M
+    logger:
+        image: arcregistry/arc_logger:latest
+        depends_on:
+          - es
+        secrets:
+          - elasticPassword
+
+networks:
+    default:                                                            # App-wide default network
+        name: arc_network
+        driver: overlay
+        driver_opts:
+            encrypted: ""                                               # "" means True  
+        
+secrets:
+    cert.key:
+        external: true                                                  # Use pre-existing secret
+    cert.crt:
+        external: true                                                  # Use pre-existing secret
+    apiKey:
+        external: true                                                  # Use pre-existing secret                   
+    elasticPassword:                                                                                                
+        external: true                                                  # Use pre-existing secret
+        
+volumes:
+    gateway:
+        external: true
+    users:
+        external: true
+    es:
+        external: true
+    es1:
+        external: true
